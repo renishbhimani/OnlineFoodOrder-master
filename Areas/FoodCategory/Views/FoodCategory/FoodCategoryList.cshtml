@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "FoodCategory List";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+@using System.Data
+@model DataTable
+
+<div class="page-content-wrapper">
+    <div class="portlet light bordered margin-top-10">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-directions font-green hide"></i>
+                <span class="caption-subject bold font-dark uppercase">FoodCategory List</span>
+            </div>
+            <div class="actions">
+                <div class="btn-group btn-group-devided">
+                    <a asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="Add" class="btn green btn-rounded"><i class="fa fa-plus"></i>&nbsp;Add FoodCategory</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content-wrapper">
+    <div class="portlet light bordered ">
+        <div class="portlet-body" style="overflow-x :auto">
+            <form asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="PR_FoodCategory_SelectByFoodCategoryName">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <input name="FoodCategoryName" id="FoodCategoryName" type="text" placeholder="Enter FoodCategory Name" class="form-control" />
+                    </div>
+                    <div class="col-lg-3 d-inline">
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                        <a asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="Index" class="btn btn-danger">Clear Filter</a>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-striped table-bordered table-hover table-header-fixed dataTable margin-top-20">
+                <thead>
+                    <tr class="">
+                        <th>No.</th>
+                        <th>User Name</th>
+                        <th>FoodCategory Name</th>
+                        <th>Description</th>
+                        <th>FoodCategory Image</th>
+                        <th>CreationDate</th>
+                        <th>ModificationDate</th>
+                    </tr>
+                </thead>
+                <tbody id="sample_2">
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (DataRow dr in Model.Rows)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@dr["UserName"]</td>
+                            <td>@dr["FoodCategoryName"]</td>
+                            <td>@dr["Description"]</td>
+                            <td><img src="@Url.Content(dr["FoodCategoryImage"].ToString())" alt="@dr["FoodCategoryName"]" style="height:50px; width:50px"></td>
+                            <td>@dr["CreationDate"]</td>
+                            <td>@dr["ModificationDate"]</td>
+                            <td class="text-center d-flex" style="padding-right:0px;">
+                                <form method="post" asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="Delete">
+                                    <input type="hidden" name="FoodCategoryID" value="@Convert.ToInt32(dr["FoodCategoryID"])">
+                                    <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete : @dr["FoodCategoryName"]');"><i class="fa fa-close"></i></button>
+                                    <a class="btn btn-info btn-xs" style="float:right;" asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="Add" asp-route-FoodCategoryID="@Convert.ToInt32(dr["FoodCategoryID"])"><i class="fa fa-pencil" style="font-size:7px"></i></a>
+                                </form>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+}
+
+

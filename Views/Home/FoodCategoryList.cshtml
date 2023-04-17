@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "FoodCategory List";
+    Layout = "~/Views/Shared/Client/_Layout.cshtml";
+}
+
+@using System.Data
+@model DataTable
+
+
+
+@foreach (DataRow dr in Model.Rows)
+
+{
+    <h5>@dr["FoodCategoryName"]</h5>
+}

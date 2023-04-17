@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "FoodCategory Add/Edit";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+@model OnlineFoodOrder.Areas.FoodCategory.Models.FoodCategoryModel
+
+<div class="page-content-wrapper">
+    <div class="portlet light bordered margin-top-10">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-directions font-green hide"></i>
+                <span class="caption-subject bold font-dark uppercase">FoodCategory Add/Edit</span>
+            </div>
+            <div class="actions">
+                <div class="btn-group btn-group-devided">
+                    <a asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="Index" class="btn green btn-rounded"><i class="fa fa-plus"></i>&nbsp;FoodCategory List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content-wrapper">
+    <div class="portlet light portlet-fit portlet-form bordered">
+        <div class="portlet-body">
+            <form method="post" asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="Save" enctype="multipart/form-data">
+                @Html.HiddenFor(x=>x.FoodCategoryID)
+
+                <div class="form-body">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                        <input type="text" asp-for="FoodCategoryName" class="form-control" id="form_control_1">
+                        <label for="form_control_1">FoodCategory Name</label>
+                    </div>
+                    <div class="form-group form-md-line-input form-md-floating-label has-warning">
+                        <input type="text" asp-for="Description" class="form-control" id="form_control_1">
+                        <label for="form_control_1">Description</label>
+                    </div>
+                    <div class="form-group form-md-line-input form-md-floating-label has-success">
+                        <input type="file" asp-for="File" class="form-control" id="form_control_1">
+                        <label for="form_control_1"></label>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="submit" value="Save" class="btn dark" />
+                            <a asp-area="FoodCategory" asp-controller="FoodCategory" asp-action="Index" class="btn default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+}

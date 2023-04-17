@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "PaymentMode List";
+    Layout = "~/Views/Shared/Admin/_Layout.cshtml";
+}
+
+@using System.Data
+@model DataTable
+
+<div class="page-content-wrapper">
+    <div class="portlet light bordered margin-top-10">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-directions font-green hide"></i>
+                <span class="caption-subject bold font-dark uppercase">PaymentMode List</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content-wrapper">
+    <div class="portlet light bordered ">
+        <div class="portlet-body" style="overflow-x :auto">
+            <table class="table table-striped table-bordered table-hover table-header-fixed dataTable">
+                <thead>
+                    <tr class="">
+                        <th>No.</th>
+                        <th>PaymentType Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @{
+                        int i = 1;
+                    }
+                    @foreach (DataRow dr in Model.Rows)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@dr["PaymentTypeName"]</td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+}
